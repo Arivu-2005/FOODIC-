@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Foodic - order food you love</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="Foodic home">Foodic</a>
+    <div class="topbar-actions">
+      <button class="btn btn-ghost" id="ordersBtn" hidden>My orders</button>
+      <button class="btn btn-ghost" id="authBtn">Log in</button>
+      <button class="btn btn-cart" id="cartBtn" aria-label="Open cart">
+        Cart <span class="badge" id="cartCount">0</span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>What are you eating tonight?</h1>
+      <label class="search">
+        <span class="sr-only">Search the menu</span>
+        <input id="searchInput" type="search" placeholder="Search dosa, biryani, coffee..." autocomplete="off">
+      </label>
+    </section>
+
+    <nav class="chips" id="chips" aria-label="Menu categories"></nav>
+
+    <section class="menu" id="menu" aria-live="polite"></section>
+  </main>
+
+  <div class="scrim" id="scrim" hidden></div>
+
+  <aside class="drawer" id="drawer" aria-label="Your cart" aria-hidden="true">
+    <div class="drawer-head">
+      <h2>Your cart</h2>
+      <button class="icon-btn" id="closeCart" aria-label="Close cart">&times;</button>
+    </div>
+    <div class="drawer-body" id="cartItems"></div>
+    <form class="drawer-foot" id="checkoutForm">
+      <div class="total-row"><span>Total</span><strong id="cartTotal">₹0</strong></div>
+      <label class="field">
+        <span>Delivery address</span>
+        <textarea id="address" rows="2" placeholder="House no, street, area, city" required></textarea>
+      </label>
+      <p class="form-error" id="checkoutError" role="alert"></p>
+      <button class="btn btn-primary btn-block" type="submit">Place order</button>
+    </form>
+  </aside>
+
+  <dialog id="authDialog">
+    <form id="authForm" method="dialog">
+      <h2 id="authTitle">Log in</h2>
+      <label class="field" id="nameField" hidden>
+        <span>Name</span>
+        <input id="authName" type="text" autocomplete="name">
+      </label>
+      <label class="field">
+        <span>Email</span>
+        <input id="authEmail" type="email" autocomplete="email" required>
+      </label>
+      <label class="field">
+        <span>Password</span>
+        <input id="authPassword" type="password" minlength="6" autocomplete="current-password" required>
+      </label>
+      <p class="form-error" id="authError" role="alert"></p>
+      <button class="btn btn-primary btn-block" type="submit" id="authSubmit">Log in</button>
+      <button class="link-btn" type="button" id="authSwitch">New here? Create an account</button>
+      <button class="link-btn" type="button" id="authCancel">Cancel</button>
+    </form>
+  </dialog>
+
+  <dialog id="ordersDialog">
+    <div class="orders-wrap">
+      <div class="drawer-head">
+        <h2>My orders</h2>
+        <button class="icon-btn" id="closeOrders" aria-label="Close orders">&times;</button>
+      </div>
+      <div id="ordersList"></div>
+    </div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
